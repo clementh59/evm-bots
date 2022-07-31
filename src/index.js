@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { sendTx } from "./Send";
+import { sendTx } from "./send.js";
 
 export const tx1 = async () => {
     // just send ETH
@@ -14,8 +14,9 @@ export const tx2 = async () => {
     await sendTx({ value: ethers.utils.parseUnits("0.001") });
 }
 
-
 const main = async () => {
     tx1();
     console.log("Done");
 }
+
+main()

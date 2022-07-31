@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
-import { web3 } from "./config";
-import createLock from "./SimpleLock";
+import { web3 } from "./constants.js";
+import createLock from "./SimpleLock.js";
 
 // define nonce outside function to persist value
 let nonce = 0;
