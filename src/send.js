@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { web3 } from "./constants.js";
+import { signer, contractWETH } from "./constants.js";
 import createLock from "./SimpleLock.js";
 
 // define nonce outside function to persist value
@@ -17,7 +17,8 @@ export const sendTx = async (params) => {
 		nonce = nonce > _nonce ? nonce : _nonce;
 		console.log(nonce);
 
-		await web3.sendTransaction({ ...params, nonce });
+		const tx = await signer.sendTransaction({ ...params, nonce });
+		console.log(tx);
 
 		// increase nonce
 		nonce += 1;
@@ -27,4 +28,11 @@ export const sendTx = async (params) => {
 		// release lock
 		lock.release();
 	}
+}
+
+export const interactWithContract = async () => {
+	const to = "0xE497182dEaDb8Fe21B69BB81F6fb9889ad1a8DaE";
+	const tx = await contractWETH.transfer(to, "1")
+	console.log(tx)
+	return;
 }
